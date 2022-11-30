@@ -3,11 +3,11 @@ package nsu.project.springserver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class SpringServerApplication {
+@SpringBootApplication(scanBasePackages = "nsu.project.springserver")
+public class SpringServer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringServerApplication.class, args);
+		SpringApplication.run(SpringServer.class, args);
 	}
 
 }
