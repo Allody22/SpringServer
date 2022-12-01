@@ -1,6 +1,10 @@
 package nsu.project.springserver.model.clients;
 
 import jakarta.persistence.*;
+import nsu.project.springserver.model.orders.Order;
+
+
+import java.util.Set;
 
 @Entity()
 @Table(name = "clients")
@@ -14,8 +18,9 @@ public class Client {
     private String phone;
     private String bonuses;
     private String password;
-
-
+    @OneToMany(orphanRemoval =true)
+    @JoinColumn(name = "client_id")
+    private Set<Order> orders;
 
     public int getId() {
         return id;

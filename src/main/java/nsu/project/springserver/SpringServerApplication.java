@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "nsu.project.springserver")
-public class SpringServer {
+public class SpringServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringServer.class, args);
+		SpringApplication.run(SpringServerApplication.class, args);
 	}
 
 }
