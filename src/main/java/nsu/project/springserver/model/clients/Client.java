@@ -6,6 +6,10 @@ import nsu.project.springserver.model.orders.Order;
 
 import java.util.Set;
 
+/** Client entity with postgreSQL table.
+ * It has id, name, phone, email, password and bonuses fields
+ *
+ */
 @Entity()
 @Table(name = "clients")
 public class Client {
