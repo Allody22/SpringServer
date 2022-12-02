@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Integer> {
@@ -18,5 +19,11 @@ public interface ClientRepository extends CrudRepository<Client, Integer> {
 
     @Query(value = " SELECT * FROM clients WHERE email = :email", nativeQuery = true)
     Client GetUserDetailsByEmail(@Param("email") String email);
+
+    @Query(value = "SELECT * FROM clients WHERE id =:id", nativeQuery = true)
+    Client findByIdClient(@Param("id") Integer id);
+
+
+    //@Query(value = "SELECT * FROM clients RIGHT JOIN orders ON clients.id = orders.client_id ", nativeQuery = true)
 
 }

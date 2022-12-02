@@ -4,8 +4,12 @@ import jakarta.persistence.*;
 import nsu.project.springserver.model.orders.Order;
 
 
-import java.util.Set;
+import java.util.*;
 
+/** Client entity with postgreSQL table.
+ * It has id, name, phone, email, password and bonuses fields
+ *
+ */
 @Entity()
 @Table(name = "clients")
 public class Client {
@@ -18,9 +22,33 @@ public class Client {
     private String phone;
     private String bonuses;
     private String password;
-    @OneToMany(orphanRemoval =true)
-    @JoinColumn(name = "client_id")
-    private Set<Order> orders;
+    @OneToMany(orphanRemoval =true, mappedBy = "client")
+    private Set<Order> orders = new HashSet<>();
+
+
+    public String stringify() {
+        List<Integer> ordersId = new ArrayList<>();
+        for (var x :orders){
+            ordersId.add(x.getId());
+        }
+        return "{" +
+                "\"id\":" + id +
+                ", \"name\":\"" + name + '\"' +
+                ", \"email\":\"" + email + '\"' +
+                ", \"phone\":\"" + phone + '\"' +
+                ", \"bonuses\":\"" + bonuses + '\"' +
+                ", \"password\":\"" + password + '\"' +
+                ", \"orders\":" + ordersId +
+                '}';
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public boolean addOneOrder(Order order) {
+        return this.orders.add(order);
+    }
 
     public int getId() {
         return id;

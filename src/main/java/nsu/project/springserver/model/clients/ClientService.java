@@ -1,11 +1,14 @@
 package nsu.project.springserver.model.clients;
 
+import nsu.project.springserver.model.orders.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 //DAO - data access object
 @Service
@@ -46,6 +49,9 @@ public class ClientService {
         return clients;
     }
 
+    public Client findClientById (int id) {
+        return repository.findByIdClient(id);
+    }
     public void delete(Client client) {
         repository.delete(client);
     }
@@ -54,7 +60,15 @@ public class ClientService {
         repository.deleteById(id);
     }
 
+    public Set<Order> getClientOrders(Client client) {
+        return client.getOrders();
+    }
+
     public void deleteAll() {
         repository.deleteAll();
+    }
+
+    public boolean saveOneOrder(Client client, Order order) {
+        return client.addOneOrder(order);
     }
 }

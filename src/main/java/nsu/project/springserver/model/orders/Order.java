@@ -2,11 +2,11 @@ package nsu.project.springserver.model.orders;
 
 
 import jakarta.persistence.*;
+import nsu.project.springserver.model.clients.Client;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -16,21 +16,42 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private String timeOfOrder;
+    private Date timeOfOrder;
     private Double price;
     private String comments;
+    @ManyToOne
+    @JoinColumn(name="client_id")
+    private Client client;
+
+    public String stringify() {
+        return "{" +
+                "\"id\":" + id +
+                ", \"title\":\"" + title + '\"' +
+                ", \"timeOfOrder\":\"" + timeOfOrder + '\"' +
+                ", \"price\":" + price +
+                ", \"comments\":\"" + comments + '\"' +
+                ", \"client_id\":" + client.getId() +
+                '}';
+    }
+
+    public Client getClient_id() {
+        return client;
+    }
+
+    public void setClient_id(Client client_id) {
+        this.client = client_id;
+    }
 
     public int getId() {
         return id;
     }
 
-    public String getTimeOfOrder() {
+    public Date getTimeOfOrder() {
         return timeOfOrder;
     }
 
-    public void setTimeOfOrder(Date timeOfOrder) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        this.timeOfOrder = dateFormat.format(timeOfOrder);
+    public void setTimeOfOrder() {
+        this.timeOfOrder = new Date();
     }
 
     public void setId(int id) {

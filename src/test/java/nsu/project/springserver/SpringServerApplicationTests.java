@@ -21,20 +21,20 @@ class SpringServerApplicationTests {
 	@Test
 	void addClientTest() {
 		Client client = new Client();
-		client.setName("Никита Ось");
-		client.setEmail("n.osmushkin@g.nsu.ru");
-		client.setPhone("hz");
-		client.setBonuses("4 in a row");
-		client.setPassword("sniks");
+		client.setName("two");
+		client.setEmail("two");
+		client.setPhone("two");
+		client.setBonuses("two");
+		client.setPassword("twotwo");
 		clientService.save(client);
 	}
 
 	@Test
 	void addOrder() {
 		Order order = new Order();
-		order.setTitle("Никита Ось");
-		order.setComments("n.osmushkin@g.nsu.ru");
-		order.setPrice(1.234);
+		order.setTitle("Заказ 2");
+		order.setComments("2222");
+		order.setPrice(2.345);
 		orderService.saveOrder(order);
 	}
 	//@Test
