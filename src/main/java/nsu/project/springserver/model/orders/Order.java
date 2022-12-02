@@ -4,9 +4,6 @@ package nsu.project.springserver.model.orders;
 import jakarta.persistence.*;
 import nsu.project.springserver.model.clients.Client;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,7 +17,7 @@ public class Order {
     private Double price;
     private String comments;
     @ManyToOne
-    @JoinColumn(name="client_id")
+    @JoinColumn(name = "client_id")
     private Client client;
 
     public String stringify() {
