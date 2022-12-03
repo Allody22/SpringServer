@@ -11,7 +11,11 @@ import java.util.*;
  *
  */
 @Entity()
-@Table(name = "clients")
+@Table(name = "clients",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "email"),
+                @UniqueConstraint(columnNames = "phone")
+        })
 public class Client {
 
     @Id
