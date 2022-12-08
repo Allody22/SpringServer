@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.0.0'
-	id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'com.example'
@@ -9,34 +9,35 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// https://mvnrepository.com/artifact/org.postgresql/postgresql
-	implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.1'
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.0.0'
+    runtimeOnly 'org.postgresql:postgresql'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.0.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '3.0.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '3.0.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.0.0'
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.1'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.0.0'
+    implementation group: 'org.springframework.security', name: 'spring-security-core', version: '6.0.0'
+    implementation group: 'org.springframework.security', name: 'spring-security-config', version: '6.0.0'
+    implementation group: 'org.springframework.security', name: 'spring-security-web', version: '6.0.0'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-jose', version: '6.0.0'
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-resource-server', version: '6.0.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.0.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.0.0'
+    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.1.0.RELEASE'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '3.0.0'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.0.0'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
 
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-rest
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '3.0.0'
-
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '3.0.0'
-
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.0.0'
-
-	// https://mvnrepository.com/artifact/org.postgresql/postgresql
-	implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.1'
-
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
 
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

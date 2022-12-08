@@ -1,11 +1,11 @@
-package nsu.project.springserver.model.orders;
+package nsu.project.security.services;
 
-import nsu.project.springserver.model.clients.Client;
-import nsu.project.springserver.model.clients.ClientRepository;
+
+
+import nsu.project.models.Order;
+import nsu.project.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 

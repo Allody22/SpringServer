@@ -1,9 +1,7 @@
-package nsu.project.springserver.model.orders;
+package nsu.project.models;
 
 
 import jakarta.persistence.*;
-import nsu.project.springserver.model.clients.Client;
-
 import java.util.Date;
 
 @Entity
@@ -18,7 +16,7 @@ public class Order {
     private String comments;
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private Client client;
+    private User client;
 
     public String stringify() {
         return "{" +
@@ -31,12 +29,12 @@ public class Order {
                 '}';
     }
 
-    public Client getClient_id() {
+    public User getClient_id() {
         return client;
     }
 
-    public void setClient_id(Client client_id) {
-        this.client = client_id;
+    public void setClient_id(User user) {
+        this.client = user;
     }
 
     public int getId() {
