@@ -2,16 +2,21 @@ package nsu.project.controllers;
 
 
 import jakarta.validation.Valid;
+import nsu.project.exception.TokenRefreshException;
 import nsu.project.models.ERole;
+import nsu.project.models.RefreshToken;
 import nsu.project.models.Role;
 import nsu.project.models.User;
 import nsu.project.payload.request.LoginRequest;
 import nsu.project.payload.request.SignupRequest;
+import nsu.project.payload.request.TokenRefreshRequest;
 import nsu.project.payload.response.JwtResponse;
 import nsu.project.payload.response.MessageResponse;
+import nsu.project.payload.response.TokenRefreshResponse;
 import nsu.project.repository.RoleRepository;
 import nsu.project.repository.UserRepository;
 import nsu.project.security.jwt.JwtUtils;
+import nsu.project.security.services.RefreshTokenService;
 import nsu.project.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -48,6 +53,9 @@ public class AuthController {
 
   @Autowired
   JwtUtils jwtUtils;
+
+  @Autowired
+  RefreshTokenService refreshTokenService;
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser2(@Valid @RequestBody LoginRequest loginRequest) {
@@ -119,6 +127,21 @@ public class AuthController {
     userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+  }
+
+  @PostMapping("/refreshtoken")
+  public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
+    String requestRefreshToken = request.getRefreshToken();
+
+    return refreshTokenService.findByToken(requestRefreshToken)
+            .map(refreshTokenService::verifyExpiration)
+            .map(RefreshToken::getUser)
+            .map(user -> {
+              String token = jwtUtils.generateTokenFromUsername(user.getUsername());
+              return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
+            })
+            .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
+                    "Refresh token is not in database!"));
   }
 
   @PostMapping("/signout")
